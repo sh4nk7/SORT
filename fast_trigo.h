@@ -1,7 +1,7 @@
 #ifndef FAST_TRIGO_H
 #define FAST_TRIGO_H
 
-
+// No include guards! Will cause multiple inclusion errors.
 #include <math.h>
 
 // Dichiarazioni delle funzioni
