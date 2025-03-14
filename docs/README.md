@@ -1,75 +1,97 @@
-Gioco Multi-Utente
+# Gioco Multi-Utente (Server-Client)
 
-Descrizione
+Questo progetto implementa un **gioco multi-utente** utilizzando **socket TCP** in ambiente Unix/C. 
+Il sistema è composto da:
+- Un **server** (`server.c`) che gestisce il gioco e mantiene lo storico dei giocatori.
+- Client **giocatori** (`client.c`) che si connettono al server per partecipare alle partite.
 
-Questo progetto implementa un sistema di gioco multi-utente in ambiente Unix/C utilizzando socket di tipo Stream. Il sistema prevede:
+---
 
-Un server che gestisce i giocatori e le partite.
+## 📂 Struttura del Progetto
 
-Client giocatori che si connettono al server per partecipare al gioco.
+📁 **gioco-multiutente/** *(cartella principale)*  
+│── 📂 **src/** *(codice sorgente)*  
+│   │── `server.c` → Implementazione del server  
+│   │── `client.c` → Implementazione del client  
+│── 📂 **include/** *(header files opzionali)*   
+│── 📂 **bin/** *(eseguibili compilati)*  
+│   │── `server` → File eseguibile del server  
+│   │── `client` → File eseguibile del client  
+│── 📂 **docs/** *(documentazione opzionale)*  
+│   │── `README.md` → Questo file  
+│── `Makefile` → File per la compilazione automatica   
 
-Il server mantiene un elenco di giocatori con il loro punteggio e numero di partite giocate. Quando il numero di giocatori connessi raggiunge N (>=3), viene simulata una partita e i punteggi vengono aggiornati.
+---
 
-Funzionamento
+## 🚀 Compilazione ed Esecuzione
 
-Il server attende connessioni sulla porta 8080.
+### 🔧 **Compilare il progetto**
+Se hai un `Makefile`, puoi semplicemente eseguire:
+```sh
+make
+```
+Oppure, per compilare manualmente:
+```sh
+mkdir -p bin
+# Compila il server
+gcc -Wall -pthread src/server.c -o bin/server
+# Compila il client
+gcc -Wall -pthread src/client.c -o bin/client
+```
 
-I giocatori si connettono al server e forniscono il loro nome.
+### 🖥️ **Eseguire il server**
+Dopo la compilazione, avvia il server:
+```sh
+./bin/server
+```
+Il server attende le connessioni dei client.
 
-Se un giocatore è nuovo, viene creato il suo profilo.
+### 🎮 **Eseguire un client**
+Apri un nuovo terminale ed esegui:
+```sh
+./bin/client
+```
+Inserisci il tuo nome quando richiesto e attendi il risultato della partita.
 
-Quando si raggiunge il numero minimo di giocatori, il server simula la partita:
+### 🏆 **Simulazione della partita**
+- Il server attende **N giocatori** (minimo 3 per iniziare una partita).
+- Quando il numero di giocatori è sufficiente, il server **simula una partita casuale**.
+- I primi 3 classificati ricevono punti: 🥇 **3 punti**, 🥈 **2 punti**, 🥉 **1 punto**.
+- Il risultato viene inviato a tutti i client connessi.
 
-Assegna i punteggi ai primi tre classificati in modo casuale.
+---
 
-Aggiorna il database dei giocatori.
+## ⚙️ **Funzionamento Interno**
 
-Invia i risultati ai client.
+### **Server (`server.c`)**
+- Ascolta connessioni in ingresso sulla porta `8080`.
+- Mantiene una lista dei giocatori registrati.
+- Simula la partita quando ci sono abbastanza giocatori.
+- Aggiorna il punteggio dei giocatori e comunica i risultati.
 
-I giocatori ricevono l'esito della partita e terminano.
+### **Client (`client.c`)**
+- Si connette al server.
+- Invia il proprio **nome giocatore**.
+- Attende il risultato della partita.
+- Termina dopo aver ricevuto il risultato.
 
-Il server attende nuovi giocatori per la prossima partita.
+---
 
-Compilazione e Avvio
+## 🔄 **Pulizia dei file compilati**
+Per eliminare i file compilati ed eseguibili:
+```sh
+make clean
+```
+Oppure manualmente:
+```sh
+rm -rf bin/* build/*
+```
 
-Server
 
-Per compilare ed eseguire il server:
+## 📝 **Autore**
+- **Giuseppe DImonte**  
+- Email: `giuseppe.dimonte@studenti.unipr.it`  
+- Università degli studi di Parma  
 
-gcc server.c -o server -pthread
-./server
+---
 
-Client
-
-Per compilare ed eseguire un client giocatore:
-
-gcc client.c -o client
-./client
-
-Struttura dei File
-
-server.c: Codice del server.
-
-client.c: Codice del client.
-
-README.md: Questo file.
-
-Esempio di Output
-
-Server:
-
-Server in ascolto sulla porta 8080...
-Giocatore connesso: Alice (0 partite, 0 punti)
-Giocatore connesso: Bob (0 partite, 0 punti)
-Giocatore connesso: Charlie (0 partite, 0 punti)
-Simulazione partita...
-Classifica: 1° Alice, 2° Bob, 3° Charlie
-
-Client:
-
-Inserisci il tuo nome: Alice
-Risultato partita: Classifica: 1° Alice, 2° Bob, 3° Charlie
-
-Autore
-
-Progetto sviluppato in linguaggio C per l'interazione tra processi tramite socket TCP.
