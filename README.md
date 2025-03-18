@@ -1,5 +1,3 @@
-/* README.md */
-
 # Sistema di Distribuzione Vaccini
 
 ## Descrizione
