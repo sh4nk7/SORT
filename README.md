@@ -10,7 +10,7 @@ Il sistema è composto da tre tipi di processi:
 
 ## Struttura della Cartella
 ```
-libreria/
+Esercizio_libreria/
 ├── Makefile         # File per la compilazione
 ├── server.c         # Implementazione del server
 ├── publisher.c      # Client per l'inserimento di nuovi libri
