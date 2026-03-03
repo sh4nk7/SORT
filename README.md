@@ -377,7 +377,7 @@ La soluzione finale è conforme alla traccia del docente ed è correttamente mod
 **Studente:** Dimonte Giuseppe  
 **Numero di matricola:** 367431  
 **Docente di riferimento:** Prof. Stefano Caselli --> stefano.caselli@unipr.it
-**Tutor laboratorio:**Gabriele Penzotti   --> gabriele.penzotti@unipr.it
+**Tutor laboratorio:** Gabriele Penzotti   --> gabriele.penzotti@unipr.it
 **Insegnamento:** SISTEMI OPERATIVI E IN TEMPO REALE  
 **Corso di laurea:** Laurea Magistrale in Ingegneria Informatica  
 **Percorso:** Intelligenza Artificiale
