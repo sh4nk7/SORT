@@ -65,7 +65,7 @@ float fast_cos(float x);
 #endif
 ```
 
-##fast_trigo.c
+## fast_trigo.c
 
 Contiene solo le implementazioni:
 ```
@@ -79,7 +79,7 @@ float fast_cos(float x) {
     return cosf(x);
 }
 ```
-##main.c
+### main.c
 Contiene esclusivamente le implementazioni delle funzioni.
 ```C 
 #include <stdio.h>
@@ -97,7 +97,7 @@ int main() {
 ```
 
 
-#5. Processo di Build
+# 5. Processo di Build
 Il processo completo è: 
 ```
 
@@ -115,7 +115,7 @@ main.o        fast_trigo.o
 
 ```
 
-#6. Creazione Manuale della Libreria
+# 6. Creazione Manuale della Libreria
 
 ## 6.1 Compilazione del file oggetto
 
@@ -230,8 +230,6 @@ Regola generale:
 # 7. Makefile
 
 ```
----
-
 # Nome del compilatore
 CC = gcc
 
@@ -263,7 +261,6 @@ main: main.c $(LIB_NAME)
 clean: 
 	rm -f *.o *.a main
 
-
 ```
 ---
 # 8. Compilazione ed Esecuzione
@@ -294,9 +291,9 @@ make clean
 ```
 ---
 
-#9. Analisi dei Simboli
+# 9. Analisi dei Simboli
 
-##Verifica simboli del file oggetto:
+## Verifica simboli del file oggetto:
 ```
 nm fast_trigo.o
 ```
