@@ -30,11 +30,19 @@ int main()
 	barrier b(hello.size());
 	
 	std::list<std::thread> threads;
+	
+	rt::priority prio(rt::priority::rt_max);
+	rt::affinity affinity;
+	affinity.reset();
+	affinity.set(0);
 
 	for(size_t id = 0; id < hello.size(); ++id)
 	{
 		std::thread th(print_char, id, std::ref(b));
+		rt::set_affinity(th, affinity);
+		rt::set_priority(th,prio);
 		threads.push_back(std::move(th));
+		--prio;
 	}
 
 	for (auto & th : threads)
@@ -44,4 +52,3 @@ int main()
 
 	return 0;
 }
-
